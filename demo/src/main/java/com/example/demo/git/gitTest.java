@@ -19,9 +19,4 @@ public class gitTest {
     public String login(){
         return "login";
     }
-
-    @RequestMapping("/getWxCode")
-    public String getWxCode(){
-        return "/code";
-    }
 }
