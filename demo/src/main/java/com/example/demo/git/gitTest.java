@@ -36,6 +36,7 @@ public class gitTest {
 
     @RequestMapping("getLog")
     public String getLog(){
+        System.out.println("//////////");
         return "getLog";
     }
 }
