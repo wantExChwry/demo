@@ -23,4 +23,8 @@ public class gitCheck {
     public String update1(){
         return "update";
     }
+    @RequestMapping("/update2")
+    public String update2(){
+        return "update2";
+    }
 }
