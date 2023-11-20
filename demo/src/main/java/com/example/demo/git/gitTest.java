@@ -20,11 +20,6 @@ public class gitTest {
         return "login";
     }
 
-    @RequestMapping("get")
-    public String get(){
-        return "login";
-    }
-
     @RequestMapping("ge2t")
     public String getWx2(){
         return "getWx2";
