@@ -19,4 +19,8 @@ public class gitCheck {
     public String login(){
         return "check";
     }
+    @RequestMapping("/update")
+    public String update1(){
+        return "update";
+    }
 }
