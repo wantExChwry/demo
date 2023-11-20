@@ -19,4 +19,9 @@ public class gitTest {
     public String login(){
         return "login";
     }
+
+    @RequestMapping("get")
+    public String get(){
+        return "login";
+    }
 }
