@@ -29,4 +29,8 @@ public class gitTest {
     public String getWx2(){
         return "getWx2";
     }
+    @RequestMapping("ge3t")
+    public String getWx3(){
+        return "getWx3";
+    }
 }
