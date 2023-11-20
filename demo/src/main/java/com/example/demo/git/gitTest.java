@@ -24,4 +24,13 @@ public class gitTest {
     public String get(){
         return "login";
     }
+
+    @RequestMapping("ge2t")
+    public String getWx2(){
+        return "getWx2";
+    }
+    @RequestMapping("ge3t")
+    public String getWx3(){
+        return "getWx3";
+    }
 }
