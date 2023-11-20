@@ -33,10 +33,4 @@ public class gitTest {
     public String getWx3(){
         return "getWx3";
     }
-
-    @RequestMapping("getLog")
-    public String getLog(){
-        System.out.println("//////////");
-        return "getLog";
-    }
 }
