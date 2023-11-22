@@ -33,8 +33,4 @@ public class gitTest {
     public String getWx3(){
         return "getWx3";
     }
-    @RequestMapping("get4")
-    public String getWx4(){
-        return "才写吧";
-    }
 }
