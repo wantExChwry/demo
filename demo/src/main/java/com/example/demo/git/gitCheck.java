@@ -34,6 +34,11 @@ public class gitCheck {
         System.out.println("cherry-pick");
         System.out.println("cherry-pick");
         System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
         return "cherry-pick";
     }
 }
