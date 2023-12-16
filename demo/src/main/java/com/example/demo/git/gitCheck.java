@@ -27,8 +27,4 @@ public class gitCheck {
     public String update2(){
         return "update2";
     }
-    @RequestMapping("/updateTst2")
-    public String updateTset2(){
-        return "cherry-pick";
-    }
 }
