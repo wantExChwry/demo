@@ -27,18 +27,4 @@ public class gitCheck {
     public String update2(){
         return "update2";
     }
-    @RequestMapping("/updateTst2")
-    public String updateTset2(){
-        System.out.println("cherry-pick");
-        System.out.println("cherry-pick");
-        System.out.println("cherry-pick");
-        System.out.println("cherry-pick");
-        System.out.println("cherry-pick");
-        System.out.println("cherry-pick");
-        System.out.println("cherry-pick");
-        System.out.println("cherry-pick");
-        System.out.println("cherry-pick");
-        System.out.println("cherry-pick");
-        return "cherry-pick";
-    }
 }
