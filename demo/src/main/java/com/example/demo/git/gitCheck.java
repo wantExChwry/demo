@@ -27,5 +27,22 @@ public class gitCheck {
     public String update2(){
         return "update2";
     }
+<<<<<<< HEAD
 
+=======
+    @RequestMapping("/updateTst2")
+    public String updateTset2(){
+        System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
+        return "cherry-pick";
+    }
+>>>>>>> 4c952e7 (feat: cherry-pic添加层数3)
 }
