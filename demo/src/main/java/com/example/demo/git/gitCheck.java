@@ -33,8 +33,6 @@ public class gitCheck {
         System.out.println("cherry-pick");
         System.out.println("cherry-pick");
         System.out.println("cherry-pick");
-        System.out.println("a");
-        System.out.println("b");
         return "cherry-pick";
     }
 
