@@ -38,11 +38,4 @@ public class gitCheck {
         return "cherry-pick";
     }
 
-    @RequestMapping("/rebase")
-    public String rebase(){
-        System.out.println("rebase develop");
-        System.out.println("完成");
-        return "rebase";
-    }
-
 }
