@@ -44,4 +44,10 @@ public class gitCheck {
         System.out.println("rebase develop");
         return "rebase";
     }
+    @RequestMapping("/rebasedevkey")
+    public String rebasekey(){
+        System.out.println("rebase develop-key");
+        return "rebase develop-key";
+    }
+
 }
