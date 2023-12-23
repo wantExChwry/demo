@@ -47,6 +47,7 @@ public class gitCheck {
     @RequestMapping("/rebasedevkey")
     public String rebasekey(){
         System.out.println("rebase develop-key");
+        System.out.println("完成develop-key");
         return "rebase develop-key";
     }
 
