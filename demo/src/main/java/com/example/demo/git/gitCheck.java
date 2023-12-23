@@ -31,6 +31,7 @@ public class gitCheck {
     public String updateTset2(){
         System.out.println("cherry-pick");
         System.out.println("cherry-pick");
+        System.out.println("cherry-pick");
         return "cherry-pick";
     }
 }
