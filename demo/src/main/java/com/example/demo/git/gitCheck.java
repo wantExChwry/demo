@@ -39,7 +39,7 @@ public class gitCheck {
     @RequestMapping("/rebase")
     public String rebase(){
         System.out.println("rebase develop");
-        System.out.println("rebase develop");
+        System.out.println("rebase 完成");
         return "rebase";
     }
 
