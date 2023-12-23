@@ -39,16 +39,5 @@ public class gitCheck {
         return "cherry-pick";
     }
 
-    @RequestMapping("/rebase")
-    public String rebase(){
-        System.out.println("rebase develop");
-        return "rebase";
-    }
-    @RequestMapping("/rebasedevkey")
-    public String rebasekey(){
-        System.out.println("rebase develop-key");
-        System.out.println("完成develop-key");
-        return "rebase develop-key";
-    }
 
 }
