@@ -10,3 +10,9 @@ spring:
     publisher-confirm-type: correlated
     #确认消息已经发送到队列
     publisher-returns: true
+  datasource:
+    username: root
+    password: wry89623
+    url: jdbc:mysql://127.0.0.1:3306/jx_charge?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+
+

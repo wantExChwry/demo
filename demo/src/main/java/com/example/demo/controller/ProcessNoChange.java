@@ -54,9 +54,9 @@ public class ProcessNoChange {
         System.out.println("Received integer message: " + message);
     }
 
-    @RabbitListener(queues = "anotherQueue")
-    @RabbitHandler
-    public void handleMessage2(@Payload Message message) {
-        System.out.println("Received custom message: " + message);
-    }
+//    @RabbitListener(queues = "anotherQueue")
+//    @RabbitHandler
+//    public void handleMessage2(@Payload Message message) {
+//        System.out.println("Received custom message: " + message);
+//    }
 }

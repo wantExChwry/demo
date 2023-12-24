@@ -49,7 +49,7 @@ public class TopicRabbitMqConfig {
         如果rabbitTemplate.convertAndSend("topicExchange", "topic.two", manMap)，那么不会匹配到路由键topic.one，从而不会找到队列topic.one。
      */
 
-    @Bean
+//    @Bean
     Binding binding(){
         //# 表示零个或多个词
         //* 表示一个词
