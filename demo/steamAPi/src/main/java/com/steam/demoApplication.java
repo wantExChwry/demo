@@ -6,7 +6,6 @@ import com.steam.utils.AuthorUtils;
 
 import java.util.*;
 import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**
@@ -17,6 +16,71 @@ import java.util.stream.Stream;
  */
 
 public class demoApplication {
+    public static void main(String[] args) {
+        /**
+         * map只能转换元素的类型
+         * flatMap可以把一个对象转换成多个对象作为流中的元素
+         * flatMap() 操作的效果是对数据流中的元素进行一对多的转换，然后将转换后的元素平铺到一个新的数据流中。
+         *
+         */
+        //打印所有书籍的名字，重复元素去重;场景：集合中有Book集合，想要获取单个book的stream（Stream(Book)而非Stream<List<Book>>）
+        List<Author> authors = AuthorUtils.getAuthors();
+        authors.stream()
+                .flatMap(new Function<Author, Stream<Book>>() {
+                    @Override
+                    public Stream<Book> apply(Author author) {
+                        //此时可以对元素过滤等，可以再一次进行流操作
+                        //里面的distinct只能对该里面的单个集合进行去重，不能整体去重，整体去重得在外部
+                        return author.getBooks().stream();
+//                                .distinct();
+                    }
+                })
+                .distinct()
+                .forEach(book -> System.out.println(book.toString()));
+        System.out.println("---------------------");
+
+        //打印现有数据的所有分类，分类去重，不能出现、；，即不能出现标点符号
+        authors.stream()
+                //获取书籍
+                .flatMap(author -> author.getBooks().stream())
+                .distinct()
+                //再将书籍的分类拆开 一转化多 使用flatMap
+                //拆开后为数组，数组转化为流使用Arrays.stream
+                .flatMap(book -> Arrays.stream(book.getCategory().split("、")).distinct())
+                .distinct()
+                .forEach(s -> System.out.println(s.toString()));
+
+    }
+
+
+    public static void skip(String[] args) {
+        List<Author> authors = AuthorUtils.getAuthors();
+        /**
+         * 跳过流中前面n个元素，返回余下的元素
+         */
+        // 打印除了年龄最大作家外的其他作家，去重，降序排序
+        authors.stream()
+                .distinct()
+                .sorted((o1, o2) -> o2.getAge()-o1.getAge())
+                .skip(1)
+                .forEach(author -> System.out.println(author.getName()+author.getAge()));
+
+    }
+
+    public static void limit(String[] args) {
+        List<Author> authors = AuthorUtils.getAuthors();
+        /**
+         * limit:设置流最大长度，超出最大长度，超出部分的元素将被摧毁
+         */
+        //降序排序，去重，打印年龄最大
+        authors.stream()
+                .distinct()
+                .sorted((o1, o2) -> o1.getAge()-o2.getAge())
+                .limit(2)
+                .forEach(author -> System.out.println(author.getName() + author.getAge()));
+        System.out.println();
+
+    }
     public static void sortedStream(String[] args) {
 
         /**
@@ -48,7 +112,7 @@ public class demoApplication {
                 /**
                  * filter(Predicate<? super T> predicate);
                  * 1.定义为过滤：排除不符合某个条件的元素
-                 * 2.写法：获取过滤条件的类型，根据数据类型过滤
+                 * 2.写法：获取过滤条件的类型，根据数据类型过滤 使用判断符号
                  */
                 .filter(author -> author.getBooks().stream().iterator().next().getName().length() > 2)
                 /**
