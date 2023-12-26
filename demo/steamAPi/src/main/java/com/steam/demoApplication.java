@@ -17,8 +17,32 @@ import java.util.stream.Stream;
  */
 
 public class demoApplication {
+    public static void sortedStream(String[] args) {
 
-    public static void main(String[] args) {
+        /**
+         * 如果调用了空参的sorted，需要流中的元素需要实现Comparable接口
+         * 调用有参匿名内部类，在方法参数的01和02比较
+         * 区别：sorted()实现接口sorted(Comparator<? super T> comparator);匿名内部了
+         */
+
+        List<Author> authors = AuthorUtils.getAuthors();
+        authors.stream()
+                .distinct()
+                .sorted()
+                .forEach(author -> System.out.println(author.getAge()));
+        authors.stream()
+                .distinct()
+                .sorted(new Comparator<Author>() {
+                    @Override
+                    public int compare(Author o1, Author o2) {
+                        return o1.getAge() - o2.getAge();
+                    }
+                })
+                .forEach(author -> System.out.println(author.getAge()));
+    }
+
+
+    public static void maoStream(String[] args) {
         List<Author> authors = AuthorUtils.getAuthors();
         authors.stream()
                 /**
