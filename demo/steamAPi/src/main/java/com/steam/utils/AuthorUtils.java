@@ -35,7 +35,7 @@ public class AuthorUtils {
 
     books3.add(new Book(5L,"你的剑就是我的剑","爱情",56,"无法想象一个武者能对他的伴侣这么残忍"));
     books3.add(new Book(5L,"风与剑","个人传记",100,"两个哲学家灵魂和肉体的碰撞会激起怎么的火花"));
-    books3.add(new Book(5L,"风与剑","个人传记",100,"两个哲学家灵魂和肉体的碰撞会激起怎么的火花"));
+    books3.add(new Book(5L,"风与剑","个人传记",1000,"两个哲学家灵魂和肉体的碰撞会激起怎么的火花"));
 
     author.setBooks(books1);
     author2.setBooks(books2);

@@ -16,7 +16,35 @@ import java.util.stream.Stream;
  */
 
 public class demoApplication {
+
     public static void main(String[] args) {
+        List<Author> authors = AuthorUtils.getAuthors();
+        // 终结操作：count 计数
+        long count = authors.stream()
+                .flatMap(author -> author.getBooks().stream())
+                .distinct()
+                .count();
+        System.out.println(count);
+
+        //获取最大最小值
+        Integer max = authors.stream()
+                .flatMap(author -> author.getBooks().stream())
+                .map(book -> book.getScore())
+                .max((o1, o2) -> o1 - o2)
+                .get();
+        System.out.println("max="+max);
+
+        Integer min = authors.stream()
+                .flatMap(author -> author.getBooks().stream())
+                .map(book -> book.getScore())
+                .min((o1, o2) -> o1-o2)
+                .get();
+        System.out.println("min="+min);
+
+
+    }
+
+    public static void flatMap(String[] args) {
         /**
          * map只能转换元素的类型
          * flatMap可以把一个对象转换成多个对象作为流中的元素
