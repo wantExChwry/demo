@@ -6,6 +6,7 @@ import com.steam.utils.AuthorUtils;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**
@@ -20,13 +21,24 @@ public class demoApplication {
     public static void main(String[] args) {
         List<Author> authors = AuthorUtils.getAuthors();
         authors.stream()
-                .filter(author -> author.getBooks().stream().iterator().next().getName().length()>2)
+                /**
+                 * filter(Predicate<? super T> predicate);
+                 * 1.定义为过滤：排除不符合某个条件的元素
+                 * 2.写法：获取过滤条件的类型，根据数据类型过滤
+                 */
+                .filter(author -> author.getBooks().stream().iterator().next().getName().length() > 2)
+                /**
+                 * 类型转换 map(Function<? super T, ? extends R> mapper)
+                 * 如下的例子：接收Author类型，转化为String类型
+                 */
                 .map(new Function<Author, String>() {
                     @Override
                     public String apply(Author author) {
                         return author.getName();
                     }
                 })
+                //map也可大小写转化
+                .map((String)->String.toLowerCase())
                 .forEach(s -> System.out.println(s));
     }
 
