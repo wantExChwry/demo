@@ -22,7 +22,14 @@ import java.util.stream.Stream;
 public class demoApplication {
     private static List<Author> authors = AuthorUtils.getAuthors();
 
-    public static void main(String[] args) {
+    /**
+     * stream注意事项：
+     * 1.惰性求值：如果没有终结操作、没有中间操作，流不会得到执行
+     * 2.流是一次性的：一旦流经过一个终结操作后，这个流就不能在使用，报废
+     * 3.不会影响数据：流中处理了很多数据，正常情况下不会影响到原本集合中的数据，除非在流使用过程中改变set了原来的对象
+     */
+
+    public static void reduce(String[] args) {
         /**
          * reduce:归并
          * 对流中的元素按照指定的计算方式计算出一个结果。（缩减操作）
