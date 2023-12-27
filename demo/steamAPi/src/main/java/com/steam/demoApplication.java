@@ -22,6 +22,27 @@ public class demoApplication {
 
     public static void main(String[] args) {
         /**
+         * findAny:获取流中任意一个元素。随机获取
+         */
+        //获取年龄大于18的作家，如果存在则输出名字
+        Optional<Author> any = authors.stream()
+                .filter(author -> author.getAge() > 18)
+                .findAny();
+        any.ifPresent(author -> System.out.println(author.getName()));
+
+        /**
+         * findFist：获取流中第一个元素
+         */
+
+        //获取年龄最小的作家，输出名字
+        Optional<Author> first = authors.stream()
+                .sorted((o1, o2) -> o1.getAge()- o2.getAge())
+                .findFirst();
+        first.ifPresent(author -> System.out.println(author));
+    }
+
+    public static void match(String[] args) {
+        /**
          * anyMatch判断是否有任意符号匹配条件的元素，返回值为boolean
          */
         //判断是否有年龄在20岁以上的作家
