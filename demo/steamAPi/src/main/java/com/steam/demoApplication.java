@@ -6,6 +6,7 @@ import com.steam.utils.AuthorUtils;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -16,8 +17,57 @@ import java.util.stream.Stream;
  */
 
 public class demoApplication {
-
     public static void main(String[] args) {
+        /**
+         * collect 流转化为一个集合
+         */
+        //获取一个存放所有作家的集合
+        List<Author> authors = AuthorUtils.getAuthors();
+        List<String> collect = authors.stream()
+                .map(author -> author.getName())
+                .distinct()
+                .collect(Collectors.toList());
+        collect.stream()
+                .forEach(s -> System.out.println(s));
+
+        //获取书名的set集合
+        Set<String> collect1 = authors.stream()
+                .flatMap(author -> author.getBooks().stream())
+                .map(book -> book.getName())
+                .collect(Collectors.toSet());
+        collect1.stream()
+                .forEach(s -> System.out.println(s));
+
+        //获取一个map集合，key为作者名 value为List<Book>
+        Map<String, List<Book>> map = authors.stream()
+                .distinct()
+                //看传入的参数，ctr+P，需要什么就new什么
+                //map 第一个是传入key，第二个匿名内部类是传入value
+                .collect(Collectors.toMap(new Function<Author, String>() {
+                    @Override
+                    public String apply(Author author) {
+                        return author.getName();
+                    }
+                }, new Function<Author, List<Book>>() {
+                    @Override
+                    public List<Book> apply(Author author) {
+                        return author.getBooks().stream().distinct().collect(Collectors.toList());
+                    }
+                }));
+        //逐步演变
+        authors.stream()
+                .distinct()
+                .collect(Collectors.toMap(author -> author.getName(), author -> author));
+        authors.stream()
+                .distinct()
+                .collect(Collectors.toMap(author -> author.getName(), a -> a));
+        authors.stream()
+                .distinct()
+                .collect(Collectors.toMap(Author::getName, author -> author));
+
+    }
+
+    public static void CountMaxMin(String[] args) {
         List<Author> authors = AuthorUtils.getAuthors();
         // 终结操作：count 计数
         long count = authors.stream()
