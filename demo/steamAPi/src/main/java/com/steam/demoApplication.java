@@ -22,6 +22,12 @@ public class demoApplication {
 
     public static void main(String[] args) {
         /**
+         * reduce:归并
+         */
+    }
+
+    public static void find(String[] args) {
+        /**
          * findAny:获取流中任意一个元素。随机获取
          */
         //获取年龄大于18的作家，如果存在则输出名字
