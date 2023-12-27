@@ -6,6 +6,7 @@ import com.steam.utils.AuthorUtils;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -17,7 +18,35 @@ import java.util.stream.Stream;
  */
 
 public class demoApplication {
+    private static List<Author> authors = AuthorUtils.getAuthors();
+
     public static void main(String[] args) {
+        /**
+         * anyMatch判断是否有任意符号匹配条件的元素，返回值为boolean
+         */
+        //判断是否有年龄在20岁以上的作家
+
+        boolean b = authors.stream()
+                .anyMatch(author -> author.getAge() > 29);
+        System.out.println(b);
+
+        /**
+         * allMatch:所有元素都匹配，返回true
+         */
+        boolean anyMatch = authors.stream()
+                .allMatch(author -> author.getAge() >= 18);
+        System.out.println(anyMatch);
+
+        /**
+         * noneMatch:判断所有的元素是否都不符合条件，都不符合返回true
+         * 注意：是都不符合
+         */
+
+        boolean noneMatch = authors.stream()
+                .noneMatch(author -> author.getBooks().size() < 1);
+        System.out.println(noneMatch);
+    }
+    public static void Collect(String[] args) {
         /**
          * collect 流转化为一个集合
          */
