@@ -5,6 +5,8 @@ import com.steam.entity.Book;
 import com.steam.utils.AuthorUtils;
 
 import java.util.*;
+import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -23,7 +25,96 @@ public class demoApplication {
     public static void main(String[] args) {
         /**
          * reduce:归并
+         * 对流中的元素按照指定的计算方式计算出一个结果。（缩减操作）
+         * reduce的作用是把stream中的元素组合起来，我们可以传入一个初始值，它会按照指定计算方式依次拿流中的元素在
+         * 初始化值的基础上计算，计算出结果后再一次和后面的元素计算
+         * reduce重载形式内部计算方式如下：
+         * T result = identity
+         * for(T element : this stream )
+         *      result = accmulator.apply(result,element)
+         * return result
+         * 其中identity是通过方法参数传入的初始值 apply具体进行什么计算也是通过传入方法参数来确定
          */
+        //使用两个参数求所有作者年龄的和
+        //reduce之前需要转化为计算需要的类型
+        System.out.println("---------两个参数");
+        Integer reduce = authors.stream()
+                .map(Author::getAge)
+                .distinct()
+                .reduce(0, new BinaryOperator<Integer>() {
+                    @Override
+                    public Integer apply(Integer integer, Integer integer2) {
+                        return integer + integer2;
+                    }
+                });
+        System.out.println(reduce);
+
+        //使用reduce求所有作家中年龄最大
+        //我的
+        Integer reduce1 = authors.stream()
+                .map(Author::getAge)
+                .distinct()
+                .reduce(0, new BinaryOperator<Integer>() {
+                    @Override
+//                    public Integer apply(Integer result, Integer element) {
+                    public Integer apply(Integer integer, Integer integer2) {
+//                        return Math.max(integer, integer2);
+                        return integer>integer2?integer:integer2;
+                    }
+                });
+        //b站三更 拿integer最小值和元素比较
+        Integer reduceBzhan = authors.stream()
+                .map(Author::getAge)
+                .distinct()
+                .reduce(Integer.MIN_VALUE, new BinaryOperator<Integer>() {
+                    @Override
+                    public Integer apply(Integer integer, Integer integer2) {
+//                        return Math.max(integer, integer2);
+                        return integer>integer2?integer:integer2;
+                    }
+                });
+        System.out.println(reduce1);
+
+        System.out.println("-----------------");
+        //获取年龄最小值
+        Integer reduceMinBzhan = authors.stream()
+                .map(Author::getAge)
+                .distinct()
+                .reduce(Integer.MAX_VALUE, new BinaryOperator<Integer>() {
+                    @Override
+                    public Integer apply(Integer integer, Integer integer2) {
+//                        return Math.max(integer, integer2);
+                        return integer>integer2?integer2:integer;
+                    }
+                });
+        System.out.println(reduceMinBzhan);
+
+        System.out.println("-----------一个参数");
+        /**
+         *      单个参数接口实现
+         *      boolean foundAny = false;
+         *      T result = null;
+         *      for (T element : this stream) {
+         *          if (!foundAny) {
+         *              foundAny = true;
+         *              result = element;
+         *          }
+         *          else
+         *              result = accumulator.apply(result, element);
+         *      }
+         *      return foundAny ? Optional.of(result) : Optional.empty();
+         *      将第一个元素作为result，如果是空的流返回空
+         */
+        Optional<Integer> reduce2 = authors.stream()
+                .map(Author::getAge)
+                .reduce(new BinaryOperator<Integer>() {
+                    @Override
+                    public Integer apply(Integer integer, Integer integer2) {
+                        return Math.max(integer, integer2);
+                    }
+                });
+        reduce2.ifPresent(integer -> System.out.println(integer));
+
     }
 
     public static void find(String[] args) {
