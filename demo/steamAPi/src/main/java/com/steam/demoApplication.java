@@ -22,6 +22,31 @@ import java.util.stream.Stream;
 public class demoApplication {
     private static List<Author> authors = AuthorUtils.getAuthors();
 
+    public static void main(String[] args) {
+        reducing(args);
+    }
+
+
+    /**
+     * groupingBy中reducing的用法
+     * 应用场景：求一个集合中相同元素的平均值/最大值/最小值，返回的数据中相同元素的只有一个（返回分组后的数据）。
+     *
+     */
+    //仅返回groupby分组的name和求和的age
+    public static void reducing(String[] args){
+        List<Author> list = authors;
+        list.addAll(authors);
+        List<Author> collect = list.stream().collect(Collectors.groupingBy(Author::getName, Collectors.reducing(0, Author::getAge, Integer::sum)))
+                .entrySet().stream().map(entry -> new Author(entry.getKey(), entry.getValue())).collect(Collectors.toList());
+        System.out.println(collect);
+        //保留其他属性
+        List<Author> collect1 = list.stream().collect(Collectors.groupingBy(Author::getName, Collectors.reducing((l1, l2) -> {
+            Integer run = l1.getAge() + l2.getAge();
+            return new Author(l1.getId(), l1.getName(), run, l1.getIntro(), l1.getBooks());
+        }))).entrySet().stream().map(entry -> new Author(entry.getKey(), entry.getValue().get())).collect(Collectors.toList());
+        System.out.println(collect1);
+    }
+
     /**
      * stream注意事项：
      * 1.惰性求值：如果没有终结操作、没有中间操作，流不会得到执行

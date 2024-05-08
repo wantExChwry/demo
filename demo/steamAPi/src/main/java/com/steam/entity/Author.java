@@ -27,4 +27,17 @@ public class Author {
     private String intro;
     //作品
     private List<Book> books;
+
+    public Author(String key, Integer value) {
+        this.name = key;
+        this.age = value;
+    }
+
+    public Author(String key, Author author) {
+        this.id = author.getId();
+        this.name = author.getName();
+        this.age = author.getAge();
+        this.intro = author.getIntro();
+        this.books = author.getBooks();
+    }
 }
